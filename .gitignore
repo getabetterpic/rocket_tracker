@@ -22,3 +22,6 @@
 /config/master.key
 
 /config/credentials/development.key
+/.idea/*
+
+.idea/
