@@ -25,3 +25,7 @@
 /.idea/*
 
 .idea/
+
+/config/credentials/test.key
+
+spec/examples.txt
