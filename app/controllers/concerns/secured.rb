@@ -1,3 +1,5 @@
+require 'json_web_token'
+
 # frozen_string_literal: true
 module Secured
   extend ActiveSupport::Concern
@@ -6,7 +8,7 @@ module Secured
     before_action :authenticate_request!
   end
 
-  SCOPES = {}
+  SCOPES = {}.freeze
 
   private
 
