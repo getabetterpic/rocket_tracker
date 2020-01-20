@@ -10,11 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_144045) do
+ActiveRecord::Schema.define(version: 2020_01_20_125501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "kits", force: :cascade do |t|
+    t.bigint "manufacturer_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manufacturer_id"], name: "index_kits_on_manufacturer_id"
+  end
+
+  create_table "manufacturers", force: :cascade do |t|
+    t.citext "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_manufacturers_on_name", unique: true
+  end
+
+  create_table "motors", force: :cascade do |t|
+    t.bigint "manufacturer_id", null: false
+    t.string "code"
+    t.boolean "single_use"
+    t.boolean "reloadable"
+    t.integer "diameter"
+    t.jsonb "specs"
+    t.jsonb "thrust_curve"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manufacturer_id"], name: "index_motors_on_manufacturer_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
