@@ -6,9 +6,14 @@ module Secured
 
   included do
     before_action :authenticate_request!
+    helper_method :current_user
   end
 
   SCOPES = {}.freeze
+
+  def current_user
+    @current_user
+  end
 
   private
 
