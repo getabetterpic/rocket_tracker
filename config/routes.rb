@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  scope :api do
-    scope :v1 do
-      get 'test', to: 'api/v1/test#secured'
+  namespace :api do
+    namespace :v1 do
+      get 'test', to: 'test#secured'
+      resources :motors, only: [:index]
+      resources :kits, only: %i[index create show] do
+        get 'all', on: :collection
+      end
+      resources :manufacturers, only: %i[index create]
     end
   end
 end
