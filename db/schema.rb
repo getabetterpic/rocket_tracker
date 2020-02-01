@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_125501) do
+ActiveRecord::Schema.define(version: 2020_01_25_105528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2020_01_20_125501) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["manufacturer_id"], name: "index_motors_on_manufacturer_id"
+  end
+
+  create_table "user_kits", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "kit_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kit_id"], name: "index_user_kits_on_kit_id"
+    t.index ["user_id"], name: "index_user_kits_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
